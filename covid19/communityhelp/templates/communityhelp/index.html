@@ -1,0 +1,69 @@
+<html>
+<head>
+    <!-- for favicon -->
+    <link rel="shortcut icon" href="https://image.flaticon.com/icons/png/512/2890/2890039.png">
+    <title>Hospitals</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+</head>
+
+
+<body class="body_content">
+
+
+<div class="container">
+    <h2>Community sourced Hospital status</h2>
+
+    {% if hospital_list %}
+
+    <table class="table table-hover" id="hospitalTable">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>State</th>
+            <th>Phone Number</th>
+            <th>Normal beds</th>
+            <th>Oxygen beds</th>
+            <th>Ventilator beds</th>
+            <th>Last updated on</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in hospital_list %}
+        <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.state }}</td>
+            <td>{{ item.phone }}</td>
+            <td>{{ item.normal_bed }}</td>
+            <td>{{ item.oxygen_bed }}</td>
+            <td>{{ item.ventilator_bed }}</td>
+            <td>{{ item.updated_at }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    <p>No hospitals are available.</p>
+    {% endif %}
+</div>
+
+
+</body>
+<script>
+$(document).ready( function () {
+    $('#hospitalTable').DataTable();
+} );
+</script>
+</html>
